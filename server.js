@@ -1,5 +1,8 @@
 var http = require("http");
 var url = require("url");
+var server = require("./server");
+var router = require("./router");
+var requestHandlers = require("./requestHandlers");
 
 function start(route, handle) {
   function onRequest(request, response) {
@@ -12,4 +15,8 @@ function start(route, handle) {
   console.log("Server has started.");
 }
 
-exports.start = start;
+var handle = {};
+handle["/"] = requestHandlers.start;
+handle["/attractions"] = requestHandlers.attractions;
+
+server.start(router.route, handle);
