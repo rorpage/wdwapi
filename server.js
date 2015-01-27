@@ -18,4 +18,4 @@ var handle = {};
 handle["/"] = requestHandlers.start;
 handle["/attractions"] = requestHandlers.attractions;
 
-server.start(router.route, handle);
+start(router.route, handle);
