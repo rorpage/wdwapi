@@ -22,7 +22,7 @@ function start(response) {
 }
 
 function schedules(response, request) {
-    api.MagicKingdom.GetSchedules(function(error, data) {
+    api.MagicKingdom.GetSchedule(function(error, data) {
 	var output = JSON.stringify(data, null, 2);
 	response.writeHead(200, {"Content-Type": "application/json"});
 	response.write(output);
@@ -31,7 +31,9 @@ function schedules(response, request) {
 }
 
 function waittimes(response, request) {
-    var qs = querystring.parse(require('url').parse(request.url).query);
+    var url = require('url');
+    var url_parts = url.parse(request.url, true);
+    var qs = querystring.parse(url_parts.query);
     if (qs.id === 80007944) {
 	    api.MagicKingdom.GetWaitTimes(function(error, data) {
 		var output = JSON.stringify(data, null, 2);
