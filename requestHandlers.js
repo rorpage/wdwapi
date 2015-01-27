@@ -1,5 +1,5 @@
 var querystring = require("querystring");
-var DisneyAPI = require("./disney/api");
+var DisneyAPI = require("./api");
 var api = new DisneyAPI();
 
 function start(response) {
