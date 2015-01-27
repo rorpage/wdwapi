@@ -31,7 +31,7 @@ function schedules(response, request) {
 }
 
 function waittimes(response, request) {
-    var qs = querystring.parse(request.url.query);
+    var qs = querystring.parse(require('url').parse(request.url).query);
     if (qs.id === 80007944) {
 	    api.MagicKingdom.GetWaitTimes(function(error, data) {
 		var output = JSON.stringify(data, null, 2);
