@@ -17,6 +17,7 @@ function start(route, handle) {
 
 var handle = {};
 handle["/"] = requestHandlers.start;
-handle["/attractions"] = requestHandlers.attractions;
+handle["/schedules"] = requestHandlers.schedules;
+handle["/waittimes"] = requestHandlers.waittimes;
 
 start(router.route, handle);

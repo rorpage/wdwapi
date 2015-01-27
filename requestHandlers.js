@@ -6,16 +6,13 @@ function start(response) {
   console.log("Request handler 'start' was called.");
 
   var body = '<html>'+
-    '<head>'+
+    '<head><title>Welcome!</title>'+
     '<meta http-equiv="Content-Type" '+
     'content="text/html; charset=UTF-8" />'+
     '</head>'+
     '<body>'+
-    '<form action="/upload" enctype="multipart/form-data" '+
-    'method="post">'+
-    '<input type="file" name="upload" multiple="multiple">'+
-    '<input type="submit" value="Upload file" />'+
-    '</form>'+
+    '/waittimes'+
+    '/schedules'+
     '</body>'+
     '</html>';
 
@@ -24,8 +21,8 @@ function start(response) {
     response.end();
 }
 
-function attractions(response) {
-    api.MagicKingdom.GetWaitTimes(function(error, data) {
+function schedules(response, id) {
+    api.MagicKingdom.GetSchedules(function(error, data) {
 	var output = JSON.stringify(data, null, 2);
 	response.writeHead(200, {"Content-Type": "application/json"});
 	response.write(output);
@@ -33,5 +30,24 @@ function attractions(response) {
     });
 }
 
+function waittimes(response, id) {
+    if (id === "80007944") {
+	    api.MagicKingdom.GetWaitTimes(function(error, data) {
+		var output = JSON.stringify(data, null, 2);
+		response.writeHead(200, {"Content-Type": "application/json"});
+		response.write(output);
+		response.end();
+	    });
+    } else {
+	    api.Epcot.GetWaitTimes(function(error, data) {
+		var output = JSON.stringify(data, null, 2);
+		response.writeHead(200, {"Content-Type": "application/json"});
+		response.write(output);
+		response.end();
+	    });
+    }
+}
+
 exports.start = start;
-exports.attractions = attractions;
+exports.schedules = schedules;
+exports.waittimes = waittimes;
