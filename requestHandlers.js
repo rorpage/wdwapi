@@ -11,8 +11,8 @@ function start(response) {
     'content="text/html; charset=UTF-8" />'+
     '</head>'+
     '<body>'+
-    '/waittimes'+
-    '/schedules'+
+    '/schedules<br />'+
+    '/waittimes<br />'+
     '</body>'+
     '</html>';
 
@@ -21,7 +21,7 @@ function start(response) {
     response.end();
 }
 
-function schedules(response, id) {
+function schedules(response) {
     api.MagicKingdom.GetSchedules(function(error, data) {
 	var output = JSON.stringify(data, null, 2);
 	response.writeHead(200, {"Content-Type": "application/json"});
@@ -30,7 +30,7 @@ function schedules(response, id) {
     });
 }
 
-function waittimes(response, id) {
+function waittimes(response) {
     if (id === "80007944") {
 	    api.MagicKingdom.GetWaitTimes(function(error, data) {
 		var output = JSON.stringify(data, null, 2);
