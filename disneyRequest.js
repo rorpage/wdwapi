@@ -72,7 +72,7 @@ function DisneyRequest(options)
     }
 
     // load request library
-    var request = require('./request').defaults(request_vars);
+    var request = require('request').defaults(request_vars);
 
     
     
